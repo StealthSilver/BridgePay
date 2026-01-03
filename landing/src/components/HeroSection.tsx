@@ -1,8 +1,7 @@
 "use client";
-
 import { useEffect, useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import gsap from "gsap";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -12,31 +11,35 @@ const HeroSection = () => {
   const visualRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Simple fade-in animation without GSAP
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    };
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in");
-        }
-      });
-    }, observerOptions);
+      tl.fromTo(
+        headlineRef.current,
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 1 }
+      )
+        .fromTo(
+          subheadRef.current,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          "-=0.6"
+        )
+        .fromTo(
+          ctaRef.current?.children,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.15 },
+          "-=0.4"
+        )
+        .fromTo(
+          visualRef.current,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 1 },
+          "-=0.8"
+        );
+    }, heroRef);
 
-    const elements = [
-      headlineRef.current,
-      subheadRef.current,
-      ctaRef.current,
-      visualRef.current,
-    ];
-    elements.forEach((el) => el && observer.observe(el));
-
-    return () => {
-      elements.forEach((el) => el && observer.unobserve(el));
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -45,36 +48,28 @@ const HeroSection = () => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden"
     >
-      {/* Background Gradients */}
       <div className="absolute inset-0 hero-glow" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
       <div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow"
         style={{ animationDelay: "1.5s" }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
           <div className="text-center lg:text-left">
             <h1
               ref={headlineRef}
-              className="font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight text-gray-900 dark:text-white opacity-0"
-              style={{ animation: "fadeInUp 1s ease-out forwards" }}
+              className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance"
             >
-              <span className="text-gray-900 dark:text-white">
-                The Future of{" "}
-              </span>
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Payments
-              </span>
-              <span className="text-gray-900 dark:text-white"> is Here</span>
+              <span className="text-foreground">The Future of </span>
+              <span className="gradient-text">Payments</span>
+              <span className="text-foreground"> is Here</span>
             </h1>
 
             <p
               ref={subheadRef}
-              className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0 opacity-0"
-              style={{ animation: "fadeInUp 1s ease-out 0.2s forwards" }}
+              className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0"
             >
               Fast, secure, and borderless transactions powered by cutting-edge
               technology. Send money globally in seconds with enterprise-grade
@@ -83,13 +78,9 @@ const HeroSection = () => {
 
             <div
               ref={ctaRef}
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start opacity-0"
-              style={{ animation: "fadeInUp 1s ease-out 0.4s forwards" }}
+              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Link
-                href="/signup"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-              >
+              <Button variant="hero" size="xl">
                 Get Started
                 <svg
                   className="w-5 h-5"
@@ -104,94 +95,73 @@ const HeroSection = () => {
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
-              </Link>
-              <button className="px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors">
+              </Button>
+              <Button variant="heroOutline" size="xl">
                 Learn More
-              </button>
+              </Button>
             </div>
 
-            {/* Stats */}
-            <div
-              className="mt-12 flex items-center gap-8 justify-center lg:justify-start opacity-0"
-              style={{ animation: "fadeInUp 1s ease-out 0.6s forwards" }}
-            >
+            <div className="mt-12 flex items-center gap-8 justify-center lg:justify-start">
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <p className="text-2xl sm:text-3xl font-bold gradient-text">
                   150+
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Countries
-                </p>
+                <p className="text-sm text-muted-foreground">Countries</p>
               </div>
-              <div className="w-px h-12 bg-gray-300 dark:bg-gray-700" />
+              <div className="w-px h-12 bg-border" />
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <p className="text-2xl sm:text-3xl font-bold gradient-text">
                   $2B+
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Processed
-                </p>
+                <p className="text-sm text-muted-foreground">Processed</p>
               </div>
-              <div className="w-px h-12 bg-gray-300 dark:bg-gray-700" />
+              <div className="w-px h-12 bg-border" />
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <p className="text-2xl sm:text-3xl font-bold gradient-text">
                   99.9%
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Uptime
-                </p>
+                <p className="text-sm text-muted-foreground">Uptime</p>
               </div>
             </div>
           </div>
 
-          {/* Right Visual */}
-          <div
-            ref={visualRef}
-            className="relative hidden lg:block opacity-0"
-            style={{ animation: "fadeInUp 1s ease-out 0.8s forwards" }}
-          >
+          <div ref={visualRef} className="relative hidden lg:block">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-3xl blur-2xl" />
-              <div className="glass-card p-8 relative bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
+              <div className="glass-card p-8 relative">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-purple-600" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent" />
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-white">
-                        BridgePay
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="font-medium text-foreground">Bridge Pay</p>
+                      <p className="text-sm text-muted-foreground">
                         Business Account
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-blue-600 font-medium px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30">
+                  <span className="text-xs text-primary font-medium px-3 py-1 rounded-full bg-primary/10">
                     Active
                   </span>
                 </div>
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-900/50">
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="p-4 rounded-xl bg-secondary/50">
+                    <p className="text-sm text-muted-foreground">
                       Available Balance
                     </p>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
+                    <p className="text-3xl font-bold text-foreground mt-1">
                       $124,532.00
                     </p>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-900/50">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Income
-                      </p>
-                      <p className="text-lg font-semibold text-blue-600">
+                    <div className="p-4 rounded-xl bg-secondary/50">
+                      <p className="text-sm text-muted-foreground">Income</p>
+                      <p className="text-lg font-semibold text-primary">
                         +$12,430
                       </p>
                     </div>
-                    <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-900/50">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Expenses
-                      </p>
-                      <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <div className="p-4 rounded-xl bg-secondary/50">
+                      <p className="text-sm text-muted-foreground">Expenses</p>
+                      <p className="text-lg font-semibold text-foreground">
                         -$3,240
                       </p>
                     </div>
@@ -202,19 +172,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 };
