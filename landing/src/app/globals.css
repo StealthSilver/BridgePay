@@ -156,6 +156,7 @@
     text-wrap: balance;
   }
 
+  /* Advanced Animations */
   @keyframes logo-spin {
     from {
       transform: rotate(0deg);
@@ -184,6 +185,22 @@
     }
     50% {
       transform: translateY(-20px);
+    }
+  }
+
+  @keyframes subtle-float {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-8px) translateX(4px);
+    }
+    50% {
+      transform: translateY(-12px) translateX(0px);
+    }
+    75% {
+      transform: translateY(-8px) translateX(-4px);
     }
   }
 
@@ -230,12 +247,106 @@
     }
   }
 
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(42, 216, 206, 0.3),
+        inset 0 0 20px rgba(42, 216, 206, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(42, 216, 206, 0.5),
+        inset 0 0 30px rgba(42, 216, 206, 0.2);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes border-glow {
+    0%,
+    100% {
+      border-color: hsl(var(--primary) / 0.5);
+      box-shadow: 0 0 15px hsl(var(--primary) / 0.2);
+    }
+    50% {
+      border-color: hsl(var(--primary) / 0.8);
+      box-shadow: 0 0 30px hsl(var(--primary) / 0.4);
+    }
+  }
+
+  @keyframes rotate-gradient {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
   .animate-button-glow {
     animation: button-glow 2s ease-in-out infinite;
   }
 
   .animate-card-float {
     animation: card-float 4s ease-in-out infinite;
+  }
+
+  .animate-subtle-float {
+    animation: subtle-float 6s ease-in-out infinite;
   }
 
   .animate-card-fade-in {
@@ -252,6 +363,38 @@
 
   .animate-gradient-shift {
     animation: gradient-shift 3s ease infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.6s ease-out;
+  }
+
+  .animate-fade-in-scale {
+    animation: fade-in-scale 0.7s ease-out;
+  }
+
+  .animate-border-glow {
+    animation: border-glow 2s ease-in-out infinite;
+  }
+
+  .animate-rotate-gradient {
+    animation: rotate-gradient 4s ease infinite;
   }
 
   @media (prefers-reduced-motion: no-preference) {
