@@ -50,27 +50,29 @@ export default function Signup() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white p-4">
-      <div className="backdrop-blur-xl bg-white/5 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/10">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+      <div className="backdrop-blur-xl bg-white/5 p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md border border-white/10">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
             BridgePay
           </h1>
-          <p className="text-gray-400">Create your account to get started</p>
+          <p className="text-gray-400 text-sm sm:text-base">
+            Create your account to get started
+          </p>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300 text-sm">
+          <div className="mb-4 p-3 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300 text-xs sm:text-sm">
             {error}
           </div>
         )}
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
               Email
             </label>
             <input
-              className="w-full px-4 py-3 bg-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 text-white rounded-lg sm:rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
               placeholder="your@email.com"
               name="username"
               type="email"
@@ -80,11 +82,11 @@ export default function Signup() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
               First Name
             </label>
             <input
-              className="w-full px-4 py-3 bg-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 text-white rounded-lg sm:rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
               placeholder="John"
               name="firstName"
               value={form.firstName}
@@ -93,11 +95,11 @@ export default function Signup() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
               Last Name
             </label>
             <input
-              className="w-full px-4 py-3 bg-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 text-white rounded-lg sm:rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
               placeholder="Doe"
               name="lastName"
               value={form.lastName}
@@ -106,11 +108,11 @@ export default function Signup() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-2">
               Password
             </label>
             <input
-              className="w-full px-4 py-3 bg-white/10 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 text-white rounded-lg sm:rounded-xl text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 transition hover:bg-white/15"
               type="password"
               placeholder="At least 6 characters"
               name="password"
@@ -122,13 +124,13 @@ export default function Signup() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 disabled:opacity-50 transition font-bold shadow-lg disabled:cursor-not-allowed mt-6"
+            className="w-full py-2 sm:py-3 rounded-lg sm:rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 disabled:opacity-50 transition font-bold shadow-lg disabled:cursor-not-allowed mt-4 sm:mt-6 text-sm sm:text-base"
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </div>
 
-        <p className="text-sm mt-6 text-gray-400 text-center">
+        <p className="text-xs sm:text-sm mt-4 sm:mt-6 text-gray-400 text-center">
           Already have an account?{" "}
           <a
             href="/signin"
