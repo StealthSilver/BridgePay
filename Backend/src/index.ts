@@ -11,7 +11,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://bridge-pay.vercel.app",
+      "https://bridge-pay-chi.vercel.app",
     ],
     credentials: true,
   })
