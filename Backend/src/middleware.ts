@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import mongoose from "mongoose";
 import { JWT_SECRET } from "./config";
 
 declare global {
   namespace Express {
     interface Request {
-      userId?: string;
+      userId?: string | mongoose.Types.ObjectId;
     }
   }
 }
