@@ -186,7 +186,11 @@ export default function Dashboard() {
                   <button
                     onClick={() => {
                       setTo(user._id);
-                      document.querySelector("input[type='number']")?.focus();
+                      (
+                        document.querySelector(
+                          "input[type='number']"
+                        ) as HTMLInputElement | null
+                      )?.focus();
                     }}
                     className="px-4 py-2 bg-blue-600/30 hover:bg-blue-600/50 border border-blue-500/30 rounded-lg text-sm font-medium transition"
                   >
