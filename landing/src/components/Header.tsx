@@ -41,11 +41,15 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo with subtle animation */}
-        <a 
-          href="#home" 
+        <a
+          href="#home"
           className="flex items-center gap-2 flex-shrink-0 group relative"
         >
-          <div className={`transition-all duration-500 ${scrolled ? "scale-75" : "scale-100"}`}>
+          <div
+            className={`transition-all duration-500 ${
+              scrolled ? "scale-75" : "scale-100"
+            }`}
+          >
             <Image
               src="/bridgepay_main.svg"
               alt="BridgePay Logo"

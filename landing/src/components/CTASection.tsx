@@ -81,7 +81,6 @@ const CTASection = () => {
                   {" "}
                   Payment Infrastructure
                 </span>
-                ?
               </h2>
 
               <p className="mt-8 sm:mt-10 text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

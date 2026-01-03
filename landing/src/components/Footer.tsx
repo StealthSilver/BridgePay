@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Footer = () => {
   const footerLinks = [
     {
@@ -22,24 +24,13 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="col-span-2 md:col-span-1">
             <a href="#home" className="flex items-center gap-3 flex-wrap group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-all duration-300">
-                <svg
-                  className="w-6 h-6 text-primary-foreground"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <span className="font-display text-lg sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                Bridge Pay
-              </span>
+              <Image
+                src="/bridgepay_main.svg"
+                alt="BridgePay Logo"
+                width={140}
+                height={140}
+                className="w-32 sm:w-40 h-auto group-hover:opacity-80 transition-opacity duration-300"
+              />
             </a>
             <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-muted-foreground max-w-xs leading-relaxed">
               Modern payment infrastructure for global businesses. Fast, secure,
