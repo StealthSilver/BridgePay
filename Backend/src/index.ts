@@ -8,7 +8,11 @@ const app = express();
 // Enable CORS with proper configuration
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://bridge-pay.vercel.app",
+    ],
     credentials: true,
   })
 );
