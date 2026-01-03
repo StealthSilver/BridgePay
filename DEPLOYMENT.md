@@ -1,7 +1,9 @@
 # BridgePay Deployment Guide
 
 ## Overview
+
 This guide covers deploying the BridgePay application:
+
 - **Backend**: Node.js + Express + MongoDB on Render
 - **Frontend**: React + Vite on Vercel
 - **Frontend URL**: https://bridge-pay.vercel.app
@@ -11,6 +13,7 @@ This guide covers deploying the BridgePay application:
 ## Backend Deployment (Render)
 
 ### Prerequisites
+
 - Render account (render.com)
 - MongoDB Atlas account or MongoDB connection string
 - GitHub repository pushed
@@ -18,6 +21,7 @@ This guide covers deploying the BridgePay application:
 ### Steps
 
 1. **Connect Render to GitHub**
+
    - Go to render.com and sign in
    - Click "New +" → "Web Service"
    - Select your GitHub repository
@@ -25,6 +29,7 @@ This guide covers deploying the BridgePay application:
 
 2. **Configure Environment Variables**
    Set these in Render's environment variables panel:
+
    ```
    MONGO_URL=mongodb+srv://username:password@cluster.mongodb.net/bridgepay
    JWT_SECRET=your_strong_jwt_secret_here
@@ -32,6 +37,7 @@ This guide covers deploying the BridgePay application:
    ```
 
 3. **Build and Deploy Settings**
+
    - **Build Command**: `npm run build`
    - **Start Command**: `npm start`
    - **Node Version**: 18+ (auto-detected from package.json)
@@ -41,6 +47,7 @@ This guide covers deploying the BridgePay application:
    - This URL will be used for frontend API configuration
 
 ### Testing Backend
+
 ```bash
 curl https://your-render-url/api/v1/user/bulk
 ```
@@ -50,6 +57,7 @@ curl https://your-render-url/api/v1/user/bulk
 ## Frontend Deployment (Vercel)
 
 ### Prerequisites
+
 - Vercel account (vercel.com)
 - GitHub repository pushed
 - Backend Render URL ready
@@ -57,23 +65,28 @@ curl https://your-render-url/api/v1/user/bulk
 ### Steps
 
 1. **Connect Vercel to GitHub**
+
    - Go to vercel.com and sign in
    - Click "Add New..." → "Project"
    - Import your GitHub repository
 
 2. **Configure Build Settings**
+
    - **Framework Preset**: Vite
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 
 3. **Add Environment Variables**
    Set this in Vercel's environment variables:
+
    ```
    VITE_API_URL=https://your-render-backend-url/api/v1
    ```
+
    Replace `your-render-backend-url` with actual Render backend URL
 
 4. **Domain Configuration**
+
    - Default: auto-assigned Vercel URL
    - Custom domain: Configure in Vercel dashboard if needed
    - Application is configured to work at: https://bridge-pay.vercel.app
@@ -84,6 +97,7 @@ curl https://your-render-url/api/v1/user/bulk
    - Test at https://bridge-pay.vercel.app
 
 ### Testing Frontend
+
 - Navigate to https://bridge-pay.vercel.app
 - Test signup with new account
 - Test signin
@@ -95,12 +109,13 @@ curl https://your-render-url/api/v1/user/bulk
 ## CORS Configuration
 
 The backend CORS configuration in `Backend/src/index.ts` includes:
+
 ```typescript
 origin: [
-  "http://localhost:5173",      // Local dev
-  "http://localhost:5174",      // Local dev fallback
-  "https://bridge-pay.vercel.app" // Production Vercel
-]
+  "http://localhost:5173", // Local dev
+  "http://localhost:5174", // Local dev fallback
+  "https://bridge-pay.vercel.app", // Production Vercel
+];
 ```
 
 **No additional CORS changes needed** - already configured for production.
@@ -110,11 +125,13 @@ origin: [
 ## Environment Variables Summary
 
 ### Frontend (.env)
+
 ```
 VITE_API_URL=https://your-render-backend-url/api/v1
 ```
 
 ### Backend (.env)
+
 ```
 MONGO_URL=mongodb+srv://username:password@cluster.mongodb.net/bridgepay
 JWT_SECRET=your_strong_secret_key
@@ -126,19 +143,23 @@ PORT=8000
 ## Troubleshooting
 
 ### CORS Errors
+
 - Check backend CORS origin includes `https://bridge-pay.vercel.app`
 - Verify `VITE_API_URL` in Vercel environment matches actual Render backend URL
 
 ### API Connection Errors
+
 - Verify `VITE_API_URL` in frontend matches backend Render URL
 - Check backend is running and accessible: `curl https://your-render-url/api/v1/user/bulk`
 
 ### MongoDB Connection Errors
+
 - Verify MongoDB Atlas IP whitelist includes Render IP
 - Ensure `MONGO_URL` is correct format
 - Check MongoDB username/password
 
 ### Build Failures
+
 - Backend: Run `npm run build` locally to test
 - Frontend: Run `npm run build` locally to test
 - Check Node version compatibility
