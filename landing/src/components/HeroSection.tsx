@@ -9,6 +9,11 @@ const HeroSection = () => {
   const subheadRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleGetStarted = () => {
+    window.open("https://bridge-pay-chi.vercel.app/", "_blank");
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,17 +31,35 @@ const HeroSection = () => {
           "-=0.6"
         )
         .fromTo(
-          ctaRef.current?.children,
+          ctaRef.current ? Array.from(ctaRef.current.children) : [],
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 0.6, stagger: 0.15 },
           "-=0.4"
         )
         .fromTo(
           visualRef.current,
-          { opacity: 0, scale: 0.9 },
-          { opacity: 1, scale: 1, duration: 1 },
+          { opacity: 0, scale: 0.9, rotateY: -30 },
+          { opacity: 1, scale: 1, rotateY: 0, duration: 1 },
           "-=0.8"
         );
+
+      // Card hover animation
+      if (cardRef.current) {
+        cardRef.current.addEventListener("mouseenter", () => {
+          gsap.to(cardRef.current, {
+            y: -10,
+            boxShadow: "0 30px 60px rgba(42, 216, 206, 0.3)",
+            duration: 0.3,
+          });
+        });
+        cardRef.current.addEventListener("mouseleave", () => {
+          gsap.to(cardRef.current, {
+            y: 0,
+            boxShadow: "0 8px 32px 0 hsla(222, 47%, 5%, 0.4)",
+            duration: 0.3,
+          });
+        });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -80,7 +103,7 @@ const HeroSection = () => {
               ref={ctaRef}
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Button variant="hero" size="xl">
+              <Button variant="cta" size="xl" onClick={handleGetStarted}>
                 Get Started
                 <svg
                   className="w-5 h-5"
@@ -125,48 +148,86 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div ref={visualRef} className="relative hidden lg:block">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
-              <div className="glass-card p-8 relative">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent" />
-                    <div>
-                      <p className="font-medium text-foreground">Bridge Pay</p>
-                      <p className="text-sm text-muted-foreground">
-                        Business Account
+          <div ref={visualRef} className="relative hidden lg:block h-96">
+            <div className="relative h-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl blur-3xl animate-card-float" />
+              <div
+                ref={cardRef}
+                className="glass-card p-8 relative h-full flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-300 hover:shadow-primary/40"
+              >
+                {/* Animated gradient border effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none animate-gradient-shift" />
+
+                {/* Header with User Icon */}
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-4">
+                      {/* User Icon */}
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-full blur opacity-75 animate-pulse" />
+                        <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
+                          <svg
+                            className="w-8 h-8 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-lg text-foreground">
+                          Bridge Pay
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Business Account
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-xs text-white font-medium px-3 py-1 rounded-full bg-gradient-to-r from-primary to-accent shadow-lg">
+                      Active
+                    </span>
+                  </div>
+
+                  {/* Balance Section */}
+                  <div className="space-y-6">
+                    <div className="p-6 rounded-2xl bg-gradient-to-br from-secondary/60 to-secondary/30 border border-border/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 animate-card-fade-in">
+                      <p className="text-sm text-muted-foreground font-medium uppercase tracking-wide">
+                        Available Balance
+                      </p>
+                      <p className="text-4xl font-black text-foreground mt-2">
+                        $124,532.00
                       </p>
                     </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 backdrop-blur-sm hover:border-primary/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 animate-card-fade-in-delayed-1">
+                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+                          Income
+                        </p>
+                        <p className="text-xl font-bold text-primary mt-1">
+                          +$12,430
+                        </p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/30 backdrop-blur-sm hover:border-accent/60 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-card-fade-in-delayed-2">
+                        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+                          Expenses
+                        </p>
+                        <p className="text-xl font-bold text-accent mt-1">
+                          -$3,240
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-xs text-primary font-medium px-3 py-1 rounded-full bg-primary/10">
-                    Active
-                  </span>
                 </div>
-                <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-secondary/50">
-                    <p className="text-sm text-muted-foreground">
-                      Available Balance
-                    </p>
-                    <p className="text-3xl font-bold text-foreground mt-1">
-                      $124,532.00
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-xl bg-secondary/50">
-                      <p className="text-sm text-muted-foreground">Income</p>
-                      <p className="text-lg font-semibold text-primary">
-                        +$12,430
-                      </p>
-                    </div>
-                    <div className="p-4 rounded-xl bg-secondary/50">
-                      <p className="text-sm text-muted-foreground">Expenses</p>
-                      <p className="text-lg font-semibold text-foreground">
-                        -$3,240
-                      </p>
-                    </div>
-                  </div>
-                </div>
+
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16 animate-pulse" />
+                <div
+                  className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl -ml-12 -mb-12 animate-pulse"
+                  style={{ animationDelay: "1s" }}
+                />
               </div>
             </div>
           </div>

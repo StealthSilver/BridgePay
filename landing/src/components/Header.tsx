@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -21,6 +22,10 @@ const Header = () => {
     { name: "Contact", href: "#cta" },
   ];
 
+  const handleSignIn = () => {
+    window.open("https://bridge-pay-chi.vercel.app/", "_blank");
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -31,24 +36,13 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <svg
-              className="w-5 h-5 text-primary-foreground"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
-          </div>
-          <span className="font-display text-xl font-bold text-foreground">
-            Bridge Pay
-          </span>
+          <Image
+            src="/bridgepay_main.svg"
+            alt="BridgePay Logo"
+            width={120}
+            height={120}
+            className="w-36 h-16"
+          />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -56,18 +50,31 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+              className="relative text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 group"
             >
-              {link.name}
+              <span className="relative z-10">{link.name}</span>
+              {/* Animated underline */}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+              {/* Glow effect on hover */}
+              <span className="absolute -inset-2 rounded-lg bg-gradient-to-r from-primary/0 via-primary/10 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur" />
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-            Sign In
+          <Button
+            variant="ghost"
+            size="sm"
+            className="hidden sm:inline-flex relative group overflow-hidden"
+            onClick={handleSignIn}
+          >
+            <span className="relative z-10 group-hover:text-primary transition-colors duration-300">
+              Sign In
+            </span>
+            {/* Animated background on hover */}
+            <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
           </Button>
-          <Button variant="hero" size="sm">
+          <Button variant="cta" size="sm" onClick={handleSignIn}>
             Get Started
           </Button>
         </div>

@@ -11,6 +11,10 @@ const CTASection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const handleStartTrial = () => {
+    window.open("https://bridge-pay-chi.vercel.app", "_blank");
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -60,7 +64,7 @@ const CTASection = () => {
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="xl">
+              <Button variant="cta" size="xl" onClick={handleStartTrial}>
                 Start Free Trial
                 <svg
                   className="w-5 h-5"
