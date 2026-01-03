@@ -66,14 +66,20 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className="relative text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 group"
+              className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 group"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <span className="relative z-10">{link.name}</span>
+              <span className="relative z-10 group-hover:text-primary transition-all duration-300">
+                {link.name}
+              </span>
+              {/* Animated background pill effect */}
+              <span className="absolute inset-0 rounded-lg bg-linear-to-r from-primary/0 via-primary/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-400 -z-20" />
               {/* Animated underline with gradient */}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-primary via-accent to-primary group-hover:w-full transition-all duration-500 rounded-full" />
-              {/* Glow effect on hover */}
-              <span className="absolute -inset-3 rounded-lg bg-linear-to-r from-primary/0 via-primary/20 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm" />
+              <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-linear-to-r from-primary via-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full origin-left" />
+              {/* Enhanced glow effect on hover */}
+              <span className="absolute -inset-4 rounded-lg bg-linear-to-r from-primary/0 via-primary/20 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 blur-md" />
+              {/* Text glow */}
+              <span className="absolute -inset-4 rounded-lg bg-linear-to-r from-primary/0 via-primary/10 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 blur-xl" />
             </a>
           ))}
         </nav>
@@ -83,14 +89,18 @@ const Header = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="hidden sm:inline-flex relative group overflow-hidden text-xs sm:text-sm font-medium"
+            className="hidden sm:inline-flex relative group overflow-hidden text-xs sm:text-sm font-medium px-4 py-2"
             onClick={handleSignIn}
           >
-            <span className="relative z-10 group-hover:text-primary transition-colors duration-300">
+            <span className="relative z-10 group-hover:text-primary transition-all duration-300">
               Sign In
             </span>
-            {/* Animated background on hover */}
-            <span className="absolute inset-0 bg-linear-to-r from-primary/0 via-primary/15 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
+            {/* Primary animated background gradient */}
+            <span className="absolute inset-0 bg-linear-to-r from-primary/0 via-primary/20 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
+            {/* Enhanced glow effect */}
+            <span className="absolute inset-0 rounded-lg shadow-lg shadow-primary/0 group-hover:shadow-primary/40 transition-all duration-300" />
+            {/* Secondary glow layer */}
+            <span className="absolute -inset-1 rounded-lg bg-linear-to-r from-primary/0 via-primary/15 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-400 -z-10 blur-md" />
           </Button>
           <Button
             variant="cta"
