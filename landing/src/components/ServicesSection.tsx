@@ -15,14 +15,14 @@ const ServicesSection = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headerRef.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 60 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 1,
           scrollTrigger: {
             trigger: headerRef.current,
-            start: "top 85%",
+            start: "top 80%",
             toggleActions: "play none none reverse",
           },
         }
@@ -31,16 +31,17 @@ const ServicesSection = () => {
       if (cardsRef.current) {
         gsap.fromTo(
           Array.from(cardsRef.current.children),
-          { opacity: 0, y: 60, scale: 0.95 },
+          { opacity: 0, y: 80, scale: 0.9, rotateY: -20 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.7,
-            stagger: 0.15,
+            rotateY: 0,
+            duration: 0.8,
+            stagger: 0.2,
             scrollTrigger: {
               trigger: cardsRef.current,
-              start: "top 80%",
+              start: "top 75%",
               toggleActions: "play none none reverse",
             },
           }
@@ -55,7 +56,7 @@ const ServicesSection = () => {
     {
       icon: (
         <svg
-          className="w-8 h-8"
+          className="w-9 h-9"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -70,13 +71,15 @@ const ServicesSection = () => {
       ),
       title: "Instant Payments",
       description:
-        "Process payments in real-time with sub-second confirmation. No waiting, no delays.",
+        "Process payments in real-time with sub-second confirmation. Lightning-fast settlement.",
       highlight: "< 3 sec",
+      color: "from-primary/25 to-primary/5",
+      borderColor: "border-primary/40",
     },
     {
       icon: (
         <svg
-          className="w-8 h-8"
+          className="w-9 h-9"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -91,13 +94,15 @@ const ServicesSection = () => {
       ),
       title: "Secure Transactions",
       description:
-        "Enterprise-grade encryption with PCI DSS Level 1 compliance and fraud detection.",
+        "Enterprise-grade encryption with PCI DSS Level 1 compliance and advanced fraud detection.",
       highlight: "256-bit SSL",
+      color: "from-accent/25 to-accent/5",
+      borderColor: "border-accent/40",
     },
     {
       icon: (
         <svg
-          className="w-8 h-8"
+          className="w-9 h-9"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -112,13 +117,15 @@ const ServicesSection = () => {
       ),
       title: "Global Transfers",
       description:
-        "Send and receive money in 50+ currencies across 150+ countries seamlessly.",
+        "Send and receive money in 50+ currencies across 150+ countries with instant conversion.",
       highlight: "150+ Countries",
+      color: "from-primary/20 via-accent/15 to-primary/10",
+      borderColor: "border-primary/35",
     },
     {
       icon: (
         <svg
-          className="w-8 h-8"
+          className="w-9 h-9"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -133,8 +140,10 @@ const ServicesSection = () => {
       ),
       title: "Developer APIs",
       description:
-        "Comprehensive REST APIs with SDKs in all major languages. Build faster.",
+        "Comprehensive REST APIs with SDKs in all major languages. Build and scale faster.",
       highlight: "99.9% Uptime",
+      color: "from-accent/20 to-accent/5",
+      borderColor: "border-accent/35",
     },
   ];
 
@@ -142,55 +151,92 @@ const ServicesSection = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
+      className="py-20 sm:py-28 lg:py-40 relative overflow-hidden"
     >
-      <div className="absolute bottom-0 left-1/4 w-48 sm:w-64 md:w-80 h-48 sm:h-64 md:h-80 bg-accent/5 rounded-full blur-3xl" />
+      {/* Decorative background elements */}
+      <div className="absolute -top-1/2 right-1/4 w-96 sm:w-[500px] md:w-[600px] h-96 sm:h-[500px] md:h-[600px] bg-accent/8 rounded-full blur-3xl opacity-50" />
+      <div className="absolute bottom-0 left-1/3 w-80 sm:w-96 md:w-[500px] h-80 sm:h-96 md:h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header Section */}
         <div
           ref={headerRef}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0"
+          className="text-center max-w-4xl mx-auto mb-16 sm:mb-20 lg:mb-24 px-2 sm:px-0"
         >
-          <span className="text-primary font-medium text-xs sm:text-sm tracking-wider uppercase">
-            Our Services
-          </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 text-foreground">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-accent/10 border border-accent/30 backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs sm:text-sm font-semibold text-accent tracking-wide uppercase">
+              Our Services
+            </span>
+          </div>
+
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-6 sm:mt-8 text-foreground leading-tight">
             Everything You Need to
-            <span className="gradient-text"> Scale Globally</span>
+            <span className="gradient-text block mt-2"> Scale Globally</span>
           </h2>
-          <p className="mt-4 sm:mt-6 text-base sm:text-lg text-muted-foreground">
+          <p className="mt-6 sm:mt-8 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Powerful tools and infrastructure designed for modern businesses.
-            From startups to enterprises, we have got you covered.
+            From startups to enterprises, we have everything you need to
+            succeed.
           </p>
         </div>
 
+        {/* Services Grid */}
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7"
         >
           {services.map((service, index) => (
             <div
               key={index}
-              className="glass-card p-8 group hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
+              className={`group glass-card p-8 sm:p-9 hover:${service.borderColor} transition-all duration-500 relative overflow-hidden backdrop-blur-lg border border-border/30 hover:shadow-xl hover:shadow-primary/20 cursor-pointer`}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-primary/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Animated gradient background */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0`}
+              />
+
+              {/* Floating accent element */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
-                <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                {/* Icon */}
+                <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center text-primary mb-6 sm:mb-7 group-hover:from-primary/40 group-hover:to-accent/30 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30 shadow-lg">
                   {service.icon}
                 </div>
 
-                <span className="text-xs font-semibold text-primary tracking-wider">
+                {/* Highlight Badge */}
+                <span className="inline-block text-xs font-bold text-primary tracking-widest uppercase bg-primary/10 px-3 py-1.5 rounded-full mb-4">
                   {service.highlight}
                 </span>
 
-                <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground mt-2">
+                {/* Title */}
+                <h3 className="font-bold text-xl sm:text-2xl text-foreground mt-3 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
 
-                <p className="mt-2 sm:mt-3 text-muted-foreground text-xs sm:text-sm leading-relaxed">
+                {/* Description */}
+                <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed group-hover:text-muted-foreground transition-colors duration-300">
                   {service.description}
                 </p>
+
+                {/* CTA Arrow */}
+                <div className="mt-5 sm:mt-6 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                  <span className="text-sm font-semibold">Learn more</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           ))}

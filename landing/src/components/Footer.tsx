@@ -15,14 +15,16 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-border bg-card/30">
-      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-16">
+    <footer className="border-t border-primary/20 bg-gradient-to-b from-card/50 to-background/80 backdrop-blur-sm">
+      <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-16 mb-12 sm:mb-16">
+          {/* Brand Section */}
           <div className="col-span-2 md:col-span-1">
-            <a href="#home" className="flex items-center gap-2 flex-wrap">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+            <a href="#home" className="flex items-center gap-3 flex-wrap group">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-all duration-300">
                 <svg
-                  className="w-5 h-5 text-primary-foreground"
+                  className="w-6 h-6 text-primary-foreground"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -35,29 +37,36 @@ const Footer = () => {
                   />
                 </svg>
               </div>
-              <span className="font-display text-lg sm:text-xl font-bold text-foreground">
+              <span className="font-display text-lg sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                 Bridge Pay
               </span>
             </a>
-            <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-muted-foreground max-w-xs">
+            <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-muted-foreground max-w-xs leading-relaxed">
               Modern payment infrastructure for global businesses. Fast, secure,
-              and scalable.
+              and infinitely scalable.
             </p>
           </div>
 
-          {footerLinks.map((group) => (
-            <div key={group.title}>
-              <h4 className="font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">
+          {/* Links Sections */}
+          {footerLinks.map((group, index) => (
+            <div
+              key={group.title}
+              className="animate-slide-up"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <h4 className="font-bold text-foreground mb-4 sm:mb-6 text-sm sm:text-base hover:text-primary transition-colors duration-300">
                 {group.title}
               </h4>
-              <ul className="space-y-2 sm:space-y-3">
+              <ul className="space-y-3 sm:space-y-4">
                 {group.links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 group/link inline-flex items-center gap-1.5"
                     >
-                      {link}
+                      <span className="group-hover/link:translate-x-1 transition-transform duration-300">
+                        {link}
+                      </span>
                     </a>
                   </li>
                 ))}
@@ -66,21 +75,28 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
+        {/* Divider with gradient */}
+        <div className="relative h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-8 sm:mb-12" />
+
+        {/* Bottom Section */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8">
           <p className="text-xs sm:text-sm text-muted-foreground">
-            2024 Bridge Pay. All rights reserved.
+            © 2024 Bridge Pay. All rights reserved. | Built with modern
+            technologies
           </p>
 
+          {/* Social Links */}
           <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="https://x.com/silver_srs"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="group p-2 rounded-lg hover:bg-primary/10 transition-all duration-300 text-muted-foreground hover:text-primary"
               title="Twitter"
+              aria-label="Follow on Twitter"
             >
               <svg
-                className="w-4 sm:w-5 h-4 sm:h-5"
+                className="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -91,11 +107,12 @@ const Footer = () => {
               href="https://github.com/StealthSilver"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="group p-2 rounded-lg hover:bg-primary/10 transition-all duration-300 text-muted-foreground hover:text-primary"
               title="GitHub"
+              aria-label="View on GitHub"
             >
               <svg
-                className="w-4 sm:w-5 h-4 sm:h-5"
+                className="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -110,11 +127,12 @@ const Footer = () => {
               href="https://www.linkedin.com/in/rajat-saraswat-0491a3259/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="group p-2 rounded-lg hover:bg-primary/10 transition-all duration-300 text-muted-foreground hover:text-primary"
               title="LinkedIn"
+              aria-label="Connect on LinkedIn"
             >
               <svg
-                className="w-4 sm:w-5 h-4 sm:h-5"
+                className="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

@@ -67,9 +67,9 @@ const Header = () => {
             >
               <span className="relative z-10">{link.name}</span>
               {/* Animated underline with gradient */}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary via-accent to-primary group-hover:w-full transition-all duration-500 rounded-full" />
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-primary via-accent to-primary group-hover:w-full transition-all duration-500 rounded-full" />
               {/* Glow effect on hover */}
-              <span className="absolute -inset-3 rounded-lg bg-gradient-to-r from-primary/0 via-primary/20 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm" />
+              <span className="absolute -inset-3 rounded-lg bg-linear-to-r from-primary/0 via-primary/20 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm" />
             </a>
           ))}
         </nav>
@@ -86,7 +86,7 @@ const Header = () => {
               Sign In
             </span>
             {/* Animated background on hover */}
-            <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/15 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
+            <span className="absolute inset-0 bg-linear-to-r from-primary/0 via-primary/15 to-accent/0 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
           </Button>
           <Button
             variant="cta"
@@ -140,70 +140,6 @@ const Header = () => {
                 className="text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 py-3 px-4 rounded-lg animate-slide-up"
                 onClick={handleMobileNavClick}
                 style={{ animationDelay: `${index * 50}ms` }}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
-    </header>
-  );
-};
-
-export default Header;
-          </Button>
-          <Button
-            variant="cta"
-            size="sm"
-            onClick={handleSignIn}
-            className="text-xs sm:text-sm px-3 sm:px-4"
-          >
-            Get Started
-          </Button>
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <nav className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 mt-2">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300 py-2"
-                onClick={handleMobileNavClick}
               >
                 {link.name}
               </a>
