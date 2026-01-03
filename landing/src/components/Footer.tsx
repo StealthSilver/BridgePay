@@ -16,11 +16,11 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-border bg-card/30">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-16">
           <div className="col-span-2 md:col-span-1">
-            <a href="#home" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+            <a href="#home" className="flex items-center gap-2 flex-wrap">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
                 <svg
                   className="w-5 h-5 text-primary-foreground"
                   fill="none"
@@ -35,11 +35,11 @@ const Footer = () => {
                   />
                 </svg>
               </div>
-              <span className="font-display text-xl font-bold text-foreground">
+              <span className="font-display text-lg sm:text-xl font-bold text-foreground">
                 Bridge Pay
               </span>
             </a>
-            <p className="mt-4 text-sm text-muted-foreground max-w-xs">
+            <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-muted-foreground max-w-xs">
               Modern payment infrastructure for global businesses. Fast, secure,
               and scalable.
             </p>
@@ -47,15 +47,15 @@ const Footer = () => {
 
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h4 className="font-semibold text-foreground mb-4">
+              <h4 className="font-semibold text-foreground mb-3 sm:mb-4 text-sm sm:text-base">
                 {group.title}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2 sm:space-y-3">
                 {group.links.map((link) => (
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                     >
                       {link}
                     </a>
@@ -66,17 +66,21 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             2024 Bridge Pay. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
             <a
               href="#"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-4 sm:w-5 h-4 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
               </svg>
             </a>

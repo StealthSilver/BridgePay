@@ -69,21 +69,21 @@ const HeroSection = () => {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-12 sm:pb-16 overflow-hidden"
     >
       <div className="absolute inset-0 hero-glow" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute top-1/4 left-1/4 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
       <div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow"
+        className="absolute bottom-1/4 right-1/4 w-40 sm:w-60 md:w-80 h-40 sm:h-60 md:h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-glow"
         style={{ animationDelay: "1.5s" }}
       />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <div className="text-center lg:text-left px-2 sm:px-0">
             <h1
               ref={headlineRef}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance"
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance"
             >
               <span className="text-foreground">The Future of </span>
               <span className="gradient-text">Payments</span>
@@ -92,7 +92,7 @@ const HeroSection = () => {
 
             <p
               ref={subheadRef}
-              className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0"
+              className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0"
             >
               Fast, secure, and borderless transactions powered by cutting-edge
               technology. Send money globally in seconds with enterprise-grade
@@ -101,7 +101,7 @@ const HeroSection = () => {
 
             <div
               ref={ctaRef}
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               <Button variant="cta" size="xl" onClick={handleGetStarted}>
                 Get Started
@@ -124,26 +124,32 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            <div className="mt-12 flex items-center gap-8 justify-center lg:justify-start">
+            <div className="mt-10 sm:mt-12 flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8 justify-center lg:justify-start">
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold gradient-text">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text">
                   150+
                 </p>
-                <p className="text-sm text-muted-foreground">Countries</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Countries
+                </p>
               </div>
-              <div className="w-px h-12 bg-border" />
+              <div className="hidden sm:block w-px h-10 sm:h-12 bg-border" />
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold gradient-text">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text">
                   $2B+
                 </p>
-                <p className="text-sm text-muted-foreground">Processed</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Processed
+                </p>
               </div>
-              <div className="w-px h-12 bg-border" />
+              <div className="hidden sm:block w-px h-10 sm:h-12 bg-border" />
               <div className="text-center">
-                <p className="text-2xl sm:text-3xl font-bold gradient-text">
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text">
                   99.9%
                 </p>
-                <p className="text-sm text-muted-foreground">Uptime</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Uptime
+                </p>
               </div>
             </div>
           </div>

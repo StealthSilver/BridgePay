@@ -142,20 +142,23 @@ const ServicesSection = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="py-24 lg:py-32 relative overflow-hidden"
+      className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
     >
-      <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-1/4 w-48 sm:w-64 md:w-80 h-48 sm:h-64 md:h-80 bg-accent/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-6">
-        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-primary font-medium text-sm tracking-wider uppercase">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div
+          ref={headerRef}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0"
+        >
+          <span className="text-primary font-medium text-xs sm:text-sm tracking-wider uppercase">
             Our Services
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 text-foreground">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 text-foreground">
             Everything You Need to
             <span className="gradient-text"> Scale Globally</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg text-muted-foreground">
             Powerful tools and infrastructure designed for modern businesses.
             From startups to enterprises, we have got you covered.
           </p>
@@ -163,7 +166,7 @@ const ServicesSection = () => {
 
         <div
           ref={cardsRef}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
           {services.map((service, index) => (
             <div
@@ -173,7 +176,7 @@ const ServicesSection = () => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-primary/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
 
@@ -181,11 +184,11 @@ const ServicesSection = () => {
                   {service.highlight}
                 </span>
 
-                <h3 className="font-display text-xl font-semibold text-foreground mt-2">
+                <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground mt-2">
                   {service.title}
                 </h3>
 
-                <p className="mt-3 text-muted-foreground text-sm leading-relaxed">
+                <p className="mt-2 sm:mt-3 text-muted-foreground text-xs sm:text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>

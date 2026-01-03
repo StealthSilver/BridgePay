@@ -115,21 +115,21 @@ const AboutSection = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="py-24 lg:py-32 relative overflow-hidden"
+      className="py-16 sm:py-24 lg:py-32 relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div ref={contentRef}>
-            <span className="text-primary font-medium text-sm tracking-wider uppercase">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
+          <div ref={contentRef} className="px-2 sm:px-0">
+            <span className="text-primary font-medium text-xs sm:text-sm tracking-wider uppercase">
               About Bridge Pay
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 text-foreground">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 text-foreground">
               Building Trust in
               <span className="gradient-text"> Digital Finance</span>
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
               Bridge Pay was founded with a singular vision: to make global
               payments as simple as sending a message. We believe financial
               infrastructure should be invisible, instant, and accessible to
