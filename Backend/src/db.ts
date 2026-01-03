@@ -21,7 +21,7 @@ const userSchema: Schema<IUser> = new Schema({
     type: String,
     required: true,
     trim: true,
-    maxlength: 50,
+    maxlength: 100,
   },
   firstName: {
     type: String,
